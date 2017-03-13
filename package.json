@@ -1,17 +1,25 @@
 {
   "name": "flat-loader",
   "version": "1.0.0",
-  "description": "",
+  "description": "Scope hoisting Webpack loader based on Rollup.",
   "main": "rollup-loader.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "webpack",
+    "rollup",
+    "loader",
+    "bundle",
+    "flat",
+    "es6",
+    "modules"
+  ],
+  "author": "Renée Kooi <renee@kooi.me>",
+  "license": "MIT",
   "dependencies": {
     "loader-utils": "^1.0.2",
     "rollup": "^0.41.4",
     "rollup-plugin-memory": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
