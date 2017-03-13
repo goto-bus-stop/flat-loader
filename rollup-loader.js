@@ -9,7 +9,7 @@ module.exports = function (contents, map) {
   const options = loaderUtils.getOptions(loader, 'rollup') || {}
 
   // TODO This may not be necessary anymore?
-  let external = options.external || (() => false)
+  var external = options.external || (() => false)
   if (Array.isArray(external)) {
     const list = external
     external = (id) => list.includes(id)
@@ -33,10 +33,8 @@ module.exports = function (contents, map) {
     ]
   }).then((bundle) => {
     // Send compiled code back to webpack.
-    const { code, map } = bundle.generate({ format: 'es' })
+    const result = bundle.generate({ format: 'es' })
 
-    require('fs').writeFileSync('/tmp/test.js', code)
-
-    cb(null, code, map)
+    cb(null, result.code, result.map)
   }).catch(cb)
 }

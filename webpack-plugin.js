@@ -14,9 +14,9 @@ function patchAddModuleDependenciesOnce (loaderContext) {
   // but idk.
   const compilation = loaderContext._compilation
   const addModuleDependencies = compilation.addModuleDependencies
-  compilation.addModuleDependencies = (...args) => {
-    args[4] = true // recursive = true
-    const result = addModuleDependencies.apply(compilation, args)
+  compilation.addModuleDependencies = function () {
+    arguments[4] = true // recursive = true
+    const result = addModuleDependencies.apply(compilation, arguments)
     // Remove the override.
     compilation.addModuleDependencies = addModuleDependencies
     return result
@@ -65,14 +65,20 @@ module.exports = function webpack (loaderContext) {
 
         const relative = path.relative(loaderContext.context, fullPath)
 
-        return webpackLoadModule(fullPath).then(({ code, map, module }) => {
-          // Only include harmony modules.
-          if (module.meta.harmonyModule) {
-            resolvedModules[fullPath] = { code, map }
+        // We load the module here, because only harmony modules are bundled by
+        // Rollup. To check that a module is a harmony module, it needs to be
+        // loaded first.
+
+        return webpackLoadModule(fullPath).then((result) => {
+          if (result.module.meta.harmonyModule) {
+            resolvedModules[fullPath] = {
+              code: result.code,
+              map: result.map
+            }
             return fullPath
           } else {
-            // Keep everything else as `import` statements, marked with
-            // an EXTERNAL_IDENTIFIER.
+            // Keep everything that's not a harmony module as `import`
+            // statements, marked with an EXTERNAL_IDENTIFIER.
             const nodeModulesRe = /^(\.\.\/)*node_modules\//
             if (nodeModulesRe.test(relative)) {
               return `${EXTERNAL_IDENTIFIER}${importee}`
@@ -83,6 +89,7 @@ module.exports = function webpack (loaderContext) {
         })
       })
     },
+
     load (target) {
       // Defer to memory plugin for the entry point.
       if (target === loaderContext.resourcePath) {
