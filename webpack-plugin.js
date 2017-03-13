@@ -14,9 +14,9 @@ function patchAddModuleDependenciesOnce (loaderContext) {
   // but idk.
   const compilation = loaderContext._compilation
   const addModuleDependencies = compilation.addModuleDependencies
-  compilation.addModuleDependencies = function () {
-    arguments[4] = true // recursive = true
-    const result = addModuleDependencies.apply(compilation, arguments)
+  compilation.addModuleDependencies = function (module, dependencies, bail, cacheGroup, recursive, callback) {
+    const result = addModuleDependencies.call(compilation,
+        module, dependencies, bail, cacheGroup, true, callback)
     // Remove the override.
     compilation.addModuleDependencies = addModuleDependencies
     return result

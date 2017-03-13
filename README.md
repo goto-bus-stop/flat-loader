@@ -1,4 +1,4 @@
-# rollup-webpack-loader
+# flat-loader
 
 > Experimental!
 
@@ -10,7 +10,7 @@ If I've done things right, using this loader should be very simple. At the top
 of your `module.rules` block in your Webpack config, add this:
 
 ```js
-{ test: [ /* Full paths to entry files */ ], use: 'rollup-webpack-loader' }
+{ test: [ /* Full paths to entry files */ ], use: 'flat-loader' }
 ```
 
 It's probably clearer in a larger example:
@@ -27,8 +27,8 @@ module.exports = {
           // In this example we only have src/app.js.
           path.join(__dirname, 'src', 'app.js')
         ],
-        // Important: ONLY use `rollup-webpack-loader` here!
-        use: 'rollup-webpack-loader'
+        // Important: ONLY use `flat-loader` here!
+        use: 'flat-loader'
       },
       // No need to touch your other loader configs.
       ...
@@ -37,7 +37,9 @@ module.exports = {
 }
 ```
 
-You can see a small example project that uses `rollup-webpack-loader` in the
+You don't need to do any Rollup configuration.
+
+You can see a small example project that uses `flat-loader` in the
 [example/](./example) folder.
 
 ## How It Works
