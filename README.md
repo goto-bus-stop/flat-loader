@@ -4,6 +4,12 @@
 
 A fancier Rollup loader for Webpack. This loader uses Rollup for bundling only.
 
+## Install
+
+```bash
+npm install --save-dev flat-loader
+```
+
 ## Configuration
 
 If I've done things right, using this loader should be very simple. At the top
