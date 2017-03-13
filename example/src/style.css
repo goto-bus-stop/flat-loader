@@ -1,0 +1,9 @@
+:global(body) {
+  background: #1b1b1b;
+  color: white;
+}
+
+.header {
+  font-size: 200%;
+}
+

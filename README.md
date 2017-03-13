@@ -1,8 +1,8 @@
 # rollup-webpack-loader
 
-A fancier Rollup loader for Webpack. Imported files will be processed by
-Webpack as normal. All ES modules will be bundled by Rollup, and the rest by
-Webpack.
+> Experimental!
+
+A fancier Rollup loader for Webpack. This loader uses Rollup for bundling only.
 
 ## Configuration
 
@@ -13,7 +13,7 @@ of your `module.rules` block in your Webpack config, add this:
 { test: [ /* Full paths to entry files */ ], use: 'rollup-webpack-loader' }
 ```
 
-It's probably clearer a larger example:
+It's probably clearer in a larger example:
 
 ```js
 module.exports = {
@@ -37,13 +37,16 @@ module.exports = {
 }
 ```
 
+You can see a small example project that uses `rollup-webpack-loader` in the
+[example/](./example) folder.
+
 ## How It Works
 
-Your app entry points are passed into Rollup. A custom Rollup plugin is added
-that uses Webpack to resolve and load imported modules, so your Webpack resolver
-configuration and loaders all apply. ES Modules are bundled by Rollup, and all
-other types (UMD/Commonjs/etc) are treated as externals. These will be bundled
-by Webpack.
+Your app entry points are passed into Rollup. A [custom Rollup plugin](./webpack-plugin)
+is added that uses Webpack to resolve and load imported modules, so your Webpack
+resolver configuration and loaders all apply. ES Modules are bundled by Rollup,
+and all other types (UMD/CommonJS/etc) are treated as externals. These will be
+bundled by Webpack.
 
 ## License
 
