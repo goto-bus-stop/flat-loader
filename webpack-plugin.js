@@ -79,7 +79,7 @@ module.exports = function webpack (loaderContext) {
           } else {
             // Keep everything that's not a harmony module as `import`
             // statements, marked with an EXTERNAL_IDENTIFIER.
-            const nodeModulesRe = /^(\.\.\/)*node_modules\//
+            const nodeModulesRe = /^(\.\.[\/\\])*node_modules[\/\\]/
             if (nodeModulesRe.test(relative)) {
               return `${EXTERNAL_IDENTIFIER}${importee}`
             } else {
