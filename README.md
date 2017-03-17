@@ -12,6 +12,11 @@ npm install --save-dev flat-loader
 
 ## Configuration
 
+> Note: If you are using Hot Reloading in development, make sure to only apply
+> flat-loader in your production build. flat-loader presents all modules that
+> are bundled by Rollup to Webpack as a single module, so hot reloading any of
+> the bundled modules will force a reload of the entire bundle.
+
 If I've done things right, using this loader should be very simple. At the top
 of your `module.rules` block in your Webpack config, add this:
 
