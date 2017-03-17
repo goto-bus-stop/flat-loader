@@ -55,7 +55,7 @@ You can see a small example project that uses `flat-loader` in the
 
 ## How It Works
 
-Your app entry points are passed into Rollup. A [custom Rollup plugin](./webpack-plugin)
+Your app entry points are passed into Rollup. A [custom Rollup plugin](./webpack-plugin.js)
 is added that uses Webpack to resolve and load imported modules, so your Webpack
 resolver configuration and loaders all apply. ES Modules are bundled by Rollup,
 and all other types (UMD/CommonJS/etc) are treated as externals. These will be
