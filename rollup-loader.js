@@ -1,5 +1,4 @@
 const rollup = require('rollup').rollup
-const memory = require('rollup-plugin-memory')
 const webpack = require('./webpack-plugin')
 
 module.exports = function (contents, map) {
@@ -7,10 +6,7 @@ module.exports = function (contents, map) {
   const cb = loader.async()
 
   rollup({
-    entry: {
-      path: loader.resourcePath,
-      contents: contents
-    },
+    entry: loader.resourcePath,
     external (id) {
       return id.startsWith(webpack.EXTERNAL_IDENTIFIER)
     },
@@ -22,8 +18,14 @@ module.exports = function (contents, map) {
       }
     },
     plugins: [
-      // Read the entry file from memory.
-      memory(),
+      {
+        // Read the entry file from memory.
+        load(target) {
+          if (target === loader.resourcePath) {
+            return contents
+          }
+        }
+      },
       webpack(loader)
     ]
   }).then((bundle) => {

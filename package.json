@@ -16,8 +16,7 @@
   "author": "Renée Kooi <renee@kooi.me>",
   "license": "MIT",
   "dependencies": {
-    "rollup": "^0.41.4",
-    "rollup-plugin-memory": "^2.0.0"
+    "rollup": "^0.41.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0"
