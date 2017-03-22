@@ -14,8 +14,12 @@ module.exports = function (contents, map) {
     external (id) {
       return id.startsWith(webpack.EXTERNAL_IDENTIFIER)
     },
-    onwarn () {
-      // Ignore warnings about externals etc.
+    onwarn (warning) {
+      // Ignore warnings about treating things as externals, but emit a Webpack
+      // warning for everything else.
+      if (warning.code !== 'UNRESOLVED_IMPORT') {
+        loader.emitWarning(warning.message)
+      }
     },
     plugins: [
       // Read the entry file from memory.
