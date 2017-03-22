@@ -21,7 +21,7 @@ If I've done things right, using this loader should be very simple. At the top
 of your `module.rules` block in your Webpack config, add this:
 
 ```js
-{ test: [ /* Full paths to entry files */ ], use: 'flat-loader' }
+{ include: [ /* Full paths to entry files */ ], use: 'flat-loader' }
 ```
 
 It's probably clearer in a larger example:
@@ -33,7 +33,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: [
+        include: [
           // List the full paths to your application's entry points.
           // In this example we only have src/app.js.
           path.join(__dirname, 'src', 'app.js')
