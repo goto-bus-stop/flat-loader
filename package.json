@@ -1,6 +1,6 @@
 {
   "name": "flat-loader",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Scope hoisting Webpack loader based on Rollup.",
   "main": "rollup-loader.js",
   "repository": "goto-bus-stop/flat-loader",
