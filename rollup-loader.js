@@ -1,4 +1,3 @@
-const loaderUtils = require('loader-utils')
 const rollup = require('rollup').rollup
 const memory = require('rollup-plugin-memory')
 const webpack = require('./webpack-plugin')
@@ -6,14 +5,6 @@ const webpack = require('./webpack-plugin')
 module.exports = function (contents, map) {
   const loader = this
   const cb = loader.async()
-  const options = loaderUtils.getOptions(loader, 'rollup') || {}
-
-  // TODO This may not be necessary anymore?
-  var external = options.external || (() => false)
-  if (Array.isArray(external)) {
-    const list = external
-    external = (id) => list.includes(id)
-  }
 
   rollup({
     entry: {
@@ -21,7 +12,7 @@ module.exports = function (contents, map) {
       contents: contents
     },
     external (id) {
-      return id.startsWith(webpack.EXTERNAL_IDENTIFIER) || external(id)
+      return id.startsWith(webpack.EXTERNAL_IDENTIFIER)
     },
     onwarn () {
       // Ignore warnings about externals etc.
