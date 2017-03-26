@@ -16,6 +16,7 @@
   "author": "Renée Kooi <renee@kooi.me>",
   "license": "MIT",
   "dependencies": {
+    "normalize-path": "^2.0.1",
     "rollup": "^0.41.4"
   },
   "scripts": {

@@ -1,4 +1,5 @@
 const path = require('path')
+const normalize = require('normalize-path')
 
 /**
  * Unique string used to signal that an import should be handled by Webpack and
@@ -63,7 +64,7 @@ module.exports = function webpack (loaderContext) {
       return webpackResolve(importee, importer).then((fullPath) => {
         if (!fullPath) return fullPath
 
-        const relative = path.relative(loaderContext.context, fullPath)
+        const relative = normalize(path.relative(loaderContext.context, fullPath), false)
 
         // We load the module here, because only harmony modules are bundled by
         // Rollup. To check that a module is a harmony module, it needs to be
@@ -79,7 +80,7 @@ module.exports = function webpack (loaderContext) {
           } else {
             // Keep everything that's not a harmony module as `import`
             // statements, marked with an EXTERNAL_IDENTIFIER.
-            const nodeModulesRe = /^(\.\.[\/\\])*node_modules[\/\\]/
+            const nodeModulesRe = /^(\.\.\/)*node_modules\//
             if (nodeModulesRe.test(relative)) {
               return `${EXTERNAL_IDENTIFIER}${importee}`
             } else {
