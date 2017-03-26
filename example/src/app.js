@@ -7,7 +7,7 @@ import { h, render } from 'preact'
 import cx from 'classnames'
 
 // Import using configured Webpack loaders:
-import style from './style.css'
+import style from './styles/style.css'
 
 // Or import CSS from npm modules...
 import 'tachyons'
