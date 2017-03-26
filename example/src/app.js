@@ -15,13 +15,13 @@ import 'tachyons'
 // And resolve aliased modules:
 import source from 'raw-loader!webpackConfig'
 
+import SyntaxHighlight from './components/SyntaxHighlight'
+
 render((
   <div className={cx('mv2', 'mh6')}>
     <h1 className={style.header}>
       Rollup Webpack Loader Example
     </h1>
-    <code>
-      <pre>{source}</pre>
-    </code>
+    <SyntaxHighlight source={source} />
   </div>
 ), document.body)

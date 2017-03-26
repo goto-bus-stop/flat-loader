@@ -3,7 +3,7 @@
     "classnames": "^2.2.5",
     "preact": "^7.2.0",
     "preact-compat": "^3.14.1",
-    "react-syntax-highlighter": "^5.0.0",
+    "prismjs": "^1.6.0",
     "tachyons": "^4.6.2"
   },
   "devDependencies": {
