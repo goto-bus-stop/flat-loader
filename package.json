@@ -20,6 +20,6 @@
     "rollup": "^0.41.4"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "cd example && npm install && npm run build"
   }
 }
