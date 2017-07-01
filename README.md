@@ -1,14 +1,12 @@
 # flat-loader
 
-> Experimental!
+> **Webpack 3 includes the ModuleConcatenationPlugin, which results in similar
+> bundles as this loader, but is much better in dealing with split bundles and
+> more complex setups. If possible, it's probably best to use that!**
+
+> https://github.com/webpack/webpack/releases/tag/v3.0.0
 
 A fancier Rollup loader for Webpack. This loader uses Rollup for bundling only.
-
-Webpack 3 includes the ModuleConcatenationPlugin, which results in similar
-bundles as this loader, but is much better in dealing with split bundles and
-more complex setups. If possible, it's probably best to use that!
-
-https://github.com/webpack/webpack/releases/tag/v3.0.0
 
 ## Install
 
